@@ -12,7 +12,7 @@ $data = json_decode($input, true);
 
 
 $modelo = new UsuarioModelo();
-
+var_dump($data);
 if ($data['accion']=="login"){
 
 $resultado = $modelo -> login($data['email'],$data['password']);
