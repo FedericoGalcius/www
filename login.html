@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+</head>
+<body>
+  <main>
+    <form onsubmit="return enviarFormulario(event)">
+      Ingrese su email: <input type="email" id="email" name="email"><br>
+      Ingrese su password: <input type="password" id="password" name="password"><br>
+      <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+      function enviarFormulario(e) {
+        e.preventDefault();
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        const datos = {
+          email: email,
+          password: password,
+          accion: "login"
+        };
+
+        fetch('controlador.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(datos)
+        })
+        .then(response => {
+      if (response.redirected) {
+       window.location.href = response.url;
+      } else {
+        console.log("error");
+      }
+      });
+        
+      }
+    </script>
+  </main>
+</body>
+</html>

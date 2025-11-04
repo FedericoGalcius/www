@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+   
+    <title>PHP fuckery</title>
+  </head>
+  <body>
+    <header></header>
+    <main>
+    <form action="controlador.php" onsubmit="enviarFormulario(event)">
+    Ingrese su email: <input type="email" id="email" name="email"><br>
+    Ingrese su nombre: <input type="text" id="nombre" name="nombre"><br>
+    Ingrese su cedula: <input type="text" id="cedula" name="cedula"><br>
+    
+   
+    <input type="submit">
+
+    </form>
+
+    <script>
+      function enviarFormulario(e) {
+        e.preventDefault(); //impide envio de formulario al backend
+        //leo valores en pantalla
+        const email = document.getElementById('email').value;
+        const nombre = document.getElementById('nombre').value;
+        const cedula = document.getElementById('cedula').value;
+
+        const datos = {
+          email: email,
+          nombre: nombre,
+          cedula :cedula,
+
+        }; //creo objetos javascript
+
+        fetch('controlador.php',{
+          method:'POST',
+          headers: {  'Content-Type':'application/json'},
+          body:JSON.stringify(datos)
+        })
+          
+      }
+    </script>
+    </main>
+    <footer></footer>
+  </body>
+</html>

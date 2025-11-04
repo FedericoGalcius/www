@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>PHP Form Fix</title>
+</head>
+<body>
+  <main>
+    <form onsubmit="return enviarFormulario(event)">
+      Ingrese su email: <input type="email" id="email" name="email"><br>
+      Ingrese su nombre: <input type="text" id="nombre" name="nombre"><br>
+      Ingrese su cedula: <input type="text" id="cedula" name="cedula"><br>
+      Cree una contraseña: <input type="password" id="password" name="password"> <br>
+      <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+      function enviarFormulario(e) {
+        e.preventDefault();
+        const email = document.getElementById("email").value;
+        const nombre = document.getElementById("nombre").value;
+        const cedula = document.getElementById("cedula").value;
+        const password = document.getElementById("password").value;
+
+        const datos = {
+          email: email,
+          nombre: nombre,
+          cedula: cedula,
+          password: password,
+          accion: "registrar"
+        };
+
+        fetch('controlador.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(datos)
+        })
+        .then(response => response.text())
+        .then(data => console.log("Respuesta del servidor:", data))
+        .catch(error => console.error("Error:", error));
+
+        return false;
+      }
+    </script>
+  </main>
+</body>
+</html>
