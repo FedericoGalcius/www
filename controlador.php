@@ -25,7 +25,7 @@ if ($resultado=="admin") {
 } 
 else {
     if ($resultado="socio"){
-        header('Location: ccop.html');
+        header('Location: coop.html');
     }
     else{
         header('Location: denegado.html');
