@@ -42,11 +42,10 @@ public function login ($email, $password){
      return 1;
 }
 
-public function listarNoSocios (){
-    
-    $sql="select * from usuarios where socio=0;";
-    return $this->conexion->query($sql);
-    return $result->fetch_all(MYSQLI_ASSOC);
+public function listarNoSocios() {
+    $sql = "SELECT * FROM usuarios WHERE socio = 0;";
+    $result = $this->conexion->query($sql);
+    return $result;
 }
 
 }

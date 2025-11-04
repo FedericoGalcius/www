@@ -5,12 +5,25 @@
     <title></title>
   </head>
   <body>
-    <header></header>
+    <header>Menu Admin</header>
     <main>
-      Es admin monsieur
-      <script>
-          
-      </script>
+      Menu admin
+      
+     <h1>Listado de No Socios</h1>
+    <ul id="noSociosList"></ul>
+
+    <script>
+       fetch('NoSocios.php')
+  .then(response => response.json())
+  .then(data => {
+    const list = document.getElementById('noSociosList');
+    data.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item.nombre; // adjust based on actual field
+      list.appendChild(li);
+    });
+  });
+    </script>
     </main>
     <footer></footer>
   </body>
